@@ -4,20 +4,25 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import { Die } from './components/Die'
 
+function generateAllNewDice() {
+  const diceArray = [];
+  for (let i = 0; i < 10; i++) {
+    diceArray.push(Math.floor(Math.random() * 6) + 1);
+  }
+  return diceArray;
+}
+
 function App() {
+  const diceArray = allNewDice();
+
+  const die = diceArray.map((value) => (
+    <Die value={value} />
+  ))
+  
   return (
     <main>
       <div className="die-container">
-        <Die value={1}/>
-        <Die value={2}/>
-        <Die value={3}/>
-        <Die value={4}/>
-        <Die value={5}/>
-        <Die value={6}/>
-        <Die value={7}/>
-        <Die value={8}/>
-        <Die value={9}/>
-        <Die value={10}/>
+        {die}
       </div>
     </main>
   )

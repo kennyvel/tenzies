@@ -32,8 +32,8 @@ main {
 main .die-container {
   display: grid;
   grid-template: auto auto / repeat(5, 1fr);
-  row-gap: 10px;
-  column-gap: 10px;
+  row-gap: 15px;
+  column-gap: 15px;
 }
 
 main .die-container .die {
@@ -41,6 +41,8 @@ main .die-container .die {
   width: 35px;
   border-radius: 3.81px;
   box-shadow: 0px 2.5px 2.5px gray;
+  border: none;
+  background-color: white;
 }
 
 button {
@@ -49,4 +51,5 @@ button {
   font: bold;
   font-family: Karla;
   font-size: 1.287rem;
+  cursor: pointer;
 }

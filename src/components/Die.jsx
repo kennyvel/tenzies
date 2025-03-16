@@ -9,3 +9,4 @@ export function Die(props) {
         </div>
     )
 }
+
