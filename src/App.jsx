@@ -7,14 +7,25 @@ export default function App() {
 	function generateAllNewDice() {
 		const diceArray = [];
 		for (let i = 0; i < 10; i++) {
-			diceArray.push(Math.ceil(Math.random() * 6))
+			const die = {
+				value: Math.ceil(Math.random() * 6),
+				isHeld: false
+			}
+			diceArray.push(die)
 		}
 		return diceArray;
 	}
+
 	function rollDice() {
 		setDice(generateAllNewDice())
 	}
-	const diceElements = dice.map(value => <Die value={value} />)
+
+	const diceElements = dice.map((die => 
+		<Die 
+			value={die.value} 
+			isHeld={die.isHeld}
+		/>)
+	)
 
 	return (
 		<main>
