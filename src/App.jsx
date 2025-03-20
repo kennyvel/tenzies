@@ -4,8 +4,8 @@ import { nanoid } from "nanoid"
 import Confetti from 'react-confetti'
 
 export default function App() {
-	const [dice, setDice] = useState(generateAllNewDice())
-	
+	const [dice, setDice] = useState(() => generateAllNewDice())
+
 	// Can't use .map() since it will return a new array and not a boolean
 	const gameWon = (dice.every(die => die.isHeld) && 
 					 dice.every(die=>die.value === dice[0].value))
