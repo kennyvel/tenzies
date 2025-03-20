@@ -6,9 +6,8 @@ export default function App() {
 	const [dice, setDice] = useState(generateAllNewDice())
 
 	// Can't use .map() since it will return a new array and not a boolean
-	if(dice.every(die => die.isHeld) && dice.every(die=>die.value === dice[0].value)) {
-		console.log("Game won!")
-	}
+	const gameWon = (dice.every(die => die.isHeld) && 
+					 dice.every(die=>die.value === dice[0].value))
 
 	function generateAllNewDice() {
 		const diceArray = [];
@@ -39,6 +38,10 @@ export default function App() {
 		}))
 	}
 
+	function newGame() {
+		setDice(generateAllNewDice())
+	}
+
 	const diceElements = dice.map((die => 
 		<Die
 			key={die.id}
@@ -56,7 +59,9 @@ export default function App() {
 			 {diceElements}
 			</div>
 			
-			<button className="roll-button" onClick={rollDice}>Roll</button>
+			<button className="roll-button" onClick={gameWon ? newGame : rollDice}>
+				{gameWon ? "New Game" : "Roll"}
+			</button>
 		</main>
 	)
 }
