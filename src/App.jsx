@@ -17,9 +17,21 @@ export default function App() {
 		}
 		return diceArray;
 	}
-
+	// Reroll the dice only if it isn't being held by the player. Only need the update the value
 	function rollDice() {
-		setDice(generateAllNewDice())
+		setDice(oldDice => oldDice.map(die => {
+				return die.isHeld ?
+					die :
+					{...die, value: Math.ceil(Math.random() * 6)}
+		}))
+	}
+	
+	function toggleHold(id) {
+		setDice(oldDice => oldDice.map(die => {
+				return die.id === id ?
+					{...die, isHeld: !die.isHeld} :
+					die
+		}))
 	}
 
 	const diceElements = dice.map((die => 
@@ -27,6 +39,7 @@ export default function App() {
 			key={die.id}
 			value={die.value} 
 			isHeld={die.isHeld}
+			hold={() => toggleHold(die.id)}
 		/>)
 	)
 
