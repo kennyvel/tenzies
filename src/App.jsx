@@ -5,6 +5,11 @@ import { nanoid } from "nanoid"
 export default function App() {
 	const [dice, setDice] = useState(generateAllNewDice())
 
+	// Can't use .map() since it will return a new array and not a boolean
+	if(dice.every(die => die.isHeld) && dice.every(die=>die.value === dice[0].value)) {
+		console.log("Game won!")
+	}
+
 	function generateAllNewDice() {
 		const diceArray = [];
 		for (let i = 0; i < 10; i++) {
@@ -45,6 +50,8 @@ export default function App() {
 
 	return (
 		<main>
+			<h1 className="title">Tenzies</h1>
+            <p className="instructions">Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>
 			<div className="die-container">
 			 {diceElements}
 			</div>
